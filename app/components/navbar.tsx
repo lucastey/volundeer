@@ -18,7 +18,38 @@ const Navbar = () => {
   };
 
   const regions = ["North East", "West", "North", "South", "Central", "East"];
-  const categories = ["Environmental", "Elderly", "Children"];
+  const categories = [
+    "Animals",
+    "Arts, culture and heritage",
+    "Community development",
+    "Education",
+    "Environment protection and sustainability",
+    "Healthcare",
+    "Other overseas causes",
+    "Overseas humanitarian aid",
+    "Social service and welfare",
+    "Sports",
+    "Adults",
+    "Animal welfare",
+    "Caregivers",
+    "Children",
+    "Disaster/Crisis victims",
+    "Elderly",
+    "Ethnic groups",
+    "Families",
+    "Foreign workers",
+    "Gender groups",
+    "General population",
+    "Incarcerated individuals",
+    "Local community",
+    "Low-income groups",
+    "Persons living with dementia",
+    "Persons living with medical illnesses",
+    "Persons living with disabilities",
+    "Persons living with mental health conditions",
+    "The environment",
+    "Youth",
+  ];
 
   return (
     <header className="bg-blue-600 text-white p-4 top-0 left-0 z-50">
@@ -101,7 +132,7 @@ const Navbar = () => {
                   className="px-2 py-1 rounded-full focus:outline-none cursor-pointer text-center"
                 />
                 {isCategoryDropdownOpen && (
-                  <ul className="absolute mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 w-full">
+                  <ul className="absolute mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 w-full max-h-60 overflow-y-auto">
                     {categories.map((category) => (
                       <li
                         key={category}
