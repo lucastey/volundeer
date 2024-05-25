@@ -1,6 +1,7 @@
 // pages/index.tsx
 import React from 'react';
 import Head from 'next/head';
+import Layout from '../components/layout';
 
 const events = [
   // Dummy data for events
@@ -12,24 +13,7 @@ const events = [
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-200">
-      <Head>
-        <title>Volundeer</title>
-        <meta name="description" content="Volundeer" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      
-      <header className="bg-blue-600 text-white p-4">
-        <nav className="container mx-auto flex justify-between">
-          <a href="/" className="text-lg font-bold">Volundeer</a>
-          <div>
-            <a href="/about" className="mr-4">About</a>
-            <a href="/contact">Contact</a>
-          </div>
-        </nav>
-      </header>
-
-      <main className="container mx-auto flex-1 p-4">
+      <Layout>
         <div className="text-center my-8">
           <h1 className="text-4xl font-bold text-black">Be a volunteer</h1>
           <p className="text-lg text-gray-600" font-semi-bold>Create positive impact by volunteering for causes you resonate with.</p>
@@ -74,8 +58,8 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-      </main>
-    </div>
+      </Layout>
+
   );
 }
 
