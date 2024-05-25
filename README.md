@@ -13,9 +13,7 @@ Singapore's high digital connectivity and active society are assets. Create a so
 
 ## Tech Stack
 - Front-end: Next.js
-- Database (future): MariaDB / MongoDB (NoSQL)
-- Deployment: Vercel, (future) AWS / GCP / MSAzure
-- Blockchain (future): Ethereum [L1] / Polygon [L2]
+- Deployment: Vercel
 
 ## Setup
 1. Clone this repository
