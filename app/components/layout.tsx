@@ -2,6 +2,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Navbar from './navbar';
+import Footer from './footer';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -15,6 +16,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <main className="container mx-auto flex-1 p-4">
                 {children}
             </main>
+            <Footer />
         </div>
     );
 }
