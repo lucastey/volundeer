@@ -1,5 +1,11 @@
+"use client";
 import React from "react";
 import Layout from "../components/layout";
+import DatePicker from "react-datepicker";
+import { useState, useRef, useEffect } from "react";
+import { useLoadScript } from "@react-google-maps/api";
+
+const libraries = ["places"];
 
 const CreatePage = () => {
   const options = [
@@ -36,12 +42,68 @@ const CreatePage = () => {
   ];
 
   // Function to register inputs with validation
-  const register = (name: string) => ({
+  const register = (name) => ({
     name,
-    required: true,
+    required: "This field is required",
   });
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    setSelectedOptions((prev) =>
+      checked ? [...prev, value] : prev.filter((option) => option !== value)
+    );
+  };
+
+  const removeSelectedOption = (option) => {
+    setSelectedOptions((prev) =>
+      prev.filter((selected) => selected !== option)
+    );
+  };
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyBVPz93pdA7bfdVBCffTosYU8vfS2WpeF0", // Replace YOUR_API_KEY with your actual Google Maps API key
+    libraries,
+  });
+
+  const inputRef = useRef();
+  const [address, setAddress] = useState("");
+
+  useEffect(() => {
+    if (isLoaded) {
+      const autocomplete = new window.google.maps.places.Autocomplete(
+        inputRef.current,
+        {
+          componentRestrictions: { country: "SG" }, // Restrict results to Singapore
+        }
+      );
+      autocomplete.setFields([
+        "address_components",
+        "formatted_address",
+        "name",
+      ]);
+
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (place.formatted_address) {
+          // Combine the place name (if available) and the formatted address
+          setAddress(
+            `${place.name ? place.name + ", " : ""}${place.formatted_address}`
+          );
+        } else {
+          // Handle the case where no address is returned
+          setAddress("No address found.");
+        }
+      });
+    }
+  }, [isLoaded]);
+
   const onHandleFileButtonClick = () => {};
+
   return (
     <Layout>
       <div className="container mx-auto p-4">
@@ -49,12 +111,87 @@ const CreatePage = () => {
           Create a Volunteer Campaign
         </h1>
         <form className="max-w-xl mx-auto shadow p-4 bg-white rounded-lg">
+          //tttt
+          <div className="mb-4 relative">
+            <label
+              htmlFor="category-dropdown"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Category
+            </label>
+            <div
+              onClick={toggleDropdown}
+              id="category-dropdown"
+              className="cursor-pointer block appearance-none w-full bg-white border border-gray-300 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-gray-700"
+            >
+              {selectedOptions.length === 0
+                ? "Select Category"
+                : selectedOptions.map((option) => (
+                    <span
+                      key={option}
+                      className="inline-flex items-center bg-gray-200 rounded-full text-sm font-semibold text-gray-700 mr-2 px-2.5 py-0.5"
+                    >
+                      {option}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          removeSelectedOption(option);
+                        }}
+                        type="button"
+                        className="ml-1.5 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                      >
+                        &times;
+                      </button>
+                    </span>
+                  ))}
+            </div>
+            {isOpen && (
+              <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-auto">
+                {options.map((option) => (
+                  <li
+                    key={option}
+                    className="flex items-center p-2 hover:bg-gray-100"
+                  >
+                    <input
+                      type="checkbox"
+                      id={`checkbox-${option}`}
+                      className="form-checkbox h-4 w-4 text-blue-600"
+                      value={option}
+                      checked={selectedOptions.includes(option)}
+                      onChange={handleCheckboxChange}
+                    />
+                    <label
+                      htmlFor={`checkbox-${option}`}
+                      className="ml-2 text-sm text-gray-700"
+                    >
+                      {option}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="location"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Location
+            </label>
+            <input
+              ref={inputRef}
+              id="location"
+              type="text"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              {...register("location")}
+            />
+          </div>
           <div className="mb-4">
             <label
               htmlFor="title"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Campaign Title
+              Title
             </label>
             <input
               id="title"
@@ -62,39 +199,6 @@ const CreatePage = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               {...register("title")}
             />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="description"
-              className="block text-gray-700 text-sm font-bold mb-2"
-            >
-              Description
-            </label>
-            <textarea
-              id="description"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              {...register("description")}
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="category"
-              className="block text-gray-700 text-sm font-bold mb-2"
-            >
-              Category
-            </label>
-            <select
-              id="category"
-              className="block appearance-none w-full bg-white border border-gray-300 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 text-gray-700"
-              multiple
-              {...register("category")}
-            >
-              {options.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
           </div>
           <div className="mb-4 flex justify-between">
             <div className="w-full mr-2">
@@ -128,20 +232,6 @@ const CreatePage = () => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="location"
-              className="block text-gray-700 text-sm font-bold mb-2"
-            >
-              Location
-            </label>
-            <input
-              id="location"
-              type="text"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              {...register("location")}
-            />
-          </div>
-          <div className="mb-4">
-            <label
               htmlFor="image"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
@@ -162,7 +252,20 @@ const CreatePage = () => {
               Choose Image
             </label>
           </div>
-
+          <div className="mb-4">
+            <label
+              htmlFor="description"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Description
+            </label>
+            <textarea
+              id="description"
+              style={{ height: "100px" }}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              {...register("description")}
+            />
+          </div>
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
