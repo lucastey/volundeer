@@ -18,9 +18,14 @@ const ProfilePage: React.FC = () => {
               <h1 className={styles.profileName}>Lucas Tay</h1>
               <p className={styles.profileLevel}>
                 LEVEL 4{" "}
-                <span className="ml-2 text-xs">Last Check-In: Today at 03:08PM</span>
+                <span className="ml-2 text-xs">
+                  Last Check-In: Today at 03:08PM
+                </span>
               </p>
-              <p className={styles.profilePoints}>85 Total Points</p>
+              <div className={styles.profilePointsContainer}>
+                <span className={styles.profilePoints}>85 Total Points</span>
+                <button className={styles.eventButton}>Redeem points!</button>
+              </div>
             </div>
           </div>
           <div className={styles.rankSection}>
@@ -28,7 +33,9 @@ const ProfilePage: React.FC = () => {
               20<span className={styles.rankFraction}>/365</span>
             </p>
             <p className={styles.rankLabel}>Rank</p>
-            <button className={styles.leaderboardButton}>VIEW LEADERBOARD</button>
+            <button className={styles.leaderboardButton}>
+              VIEW LEADERBOARD
+            </button>
           </div>
         </div>
         <div className={styles.progressSection}>
@@ -37,10 +44,7 @@ const ProfilePage: React.FC = () => {
             <p className={styles.progressLabel}>Rank Up!</p>
           </div>
           <div className={styles.progressBarContainer}>
-            <div
-              className={styles.progressBar}
-              style={{ width: "45%" }}
-            ></div>
+            <div className={styles.progressBar} style={{ width: "45%" }}></div>
           </div>
         </div>
         <div className={styles.badgesSection}>
@@ -71,7 +75,9 @@ const ProfilePage: React.FC = () => {
             <div className={styles.historyButton}></div>
           </div>
           <div className={styles.historyItem}>
-            <div className={styles.historyEvent}>Beach Clean-Up - Changi Beach July</div>
+            <div className={styles.historyEvent}>
+              Beach Clean-Up - Changi Beach July
+            </div>
             <div className={styles.historyDate}>12/04/2024</div>
             <div className={styles.historyPoints}>20 Points</div>
             <div className={styles.historyButton}>
@@ -79,7 +85,9 @@ const ProfilePage: React.FC = () => {
             </div>
           </div>
           <div className={styles.historyItem}>
-            <div className={styles.historyEvent}>Volunteer @ Club Heal Loyang</div>
+            <div className={styles.historyEvent}>
+              Volunteer @ Club Heal Loyang
+            </div>
             <div className={styles.historyDate}>27/05/2024</div>
             <div className={styles.historyPoints}>65 Points</div>
             <div className={styles.historyButton}>

@@ -130,6 +130,7 @@ const Navbar = () => {
         <div className="flex-1 flex justify-center space-x-4 items-center">
           <Link href="/create" className="text-base font-semibold">Create</Link>
           <Link href="/proposal" className="text-base font-semibold">Proposal</Link>
+          <Link href="/rewards" className="text-base font-semibold">Rewards</Link>
           <Link href="/profile" className="text-base font-semibold flex items-center">
             <div className="bg-green-500 text-white rounded-full h-12 w-12 flex items-center justify-center text-lg font-bold">
               L
