@@ -4,9 +4,38 @@
 import React, { useState } from "react";
 import Link from 'next/link';
 import Layout from "../components/layout";
-import { proposals, comments } from "./data";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faComment } from '@fortawesome/free-solid-svg-icons';
+
+// Sample Data
+const sampleProposals = [
+  {
+    id: 1,
+    title: "Proposal for Urban Green Spaces",
+    content: "A proposal to increase urban green spaces in the city to improve air quality and provide recreational areas for residents.",
+    votes: 45,
+  },
+  {
+    id: 2,
+    title: "Community Education Initiative",
+    content: "An initiative to provide free educational workshops on various topics such as finance, health, and technology for community members.",
+    votes: 30,
+  },
+  {
+    id: 3,
+    title: "Local Farmers Market Support",
+    content: "A proposal to support local farmers markets by providing subsidies and marketing assistance to boost local agriculture.",
+    votes: 22,
+  },
+];
+
+const sampleComments = [
+  { id: 1, proposalId: 1, body: "This is a great idea! More green spaces are definitely needed." },
+  { id: 2, proposalId: 1, body: "I support this proposal. It will improve our quality of life." },
+  { id: 3, proposalId: 2, body: "Educational workshops are a wonderful way to empower our community." },
+  { id: 4, proposalId: 3, body: "Supporting local farmers is crucial for our economy." },
+  { id: 5, proposalId: 3, body: "Great proposal! Local markets need more visibility." },
+];
 
 // Comment Component
 interface CommentProps {
@@ -19,10 +48,12 @@ interface CommentProps {
 
 // Proposal Component
 interface ProposalProps {
-  id: number;
-  title: string;
-  content: string;
-  votes: number;
+  proposal: {
+    id: number;
+    title: string;
+    content: string;
+    votes: number;
+  };
 }
 
 const Proposal: React.FC<{ proposal: ProposalProps }> = ({ proposal }) => {
@@ -31,7 +62,7 @@ const Proposal: React.FC<{ proposal: ProposalProps }> = ({ proposal }) => {
   const handleUpvote = () => setVotes(votes + 1);
   const handleDownvote = () => setVotes(votes - 1);
 
-  const commentCount = comments.filter(comment => comment.postId === proposal.id).length;
+  const commentCount = sampleComments.filter(comment => comment.proposalId === proposal.id).length;
 
   return (
     <Link href={`/proposal/${proposal.id}`} className="block border p-4 mb-4 no-underline hover:bg-gray-100 text-black">
@@ -52,8 +83,8 @@ const Proposal: React.FC<{ proposal: ProposalProps }> = ({ proposal }) => {
 const ForumPage = () => {
   return (
     <Layout>
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {proposals.map((proposal) => (
+      <div className="mt-16 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        {sampleProposals.map((proposal) => (
           <Proposal key={proposal.id} proposal={proposal} />
         ))}
       </div>
