@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 
 const events = [
   // Dummy data for events
-  { id: 1, name: 'Assistant Honorary Secretary (prefer social work background)', organization: 'SingYouth Hub', spots: '3 spots left', image: '/images/event1.jpg' },
+  { id: 1, name: 'Assistant Honorary Secretary (prefer social work background)', organization: 'SingYouth Hub', spots: '3 spots', image: '/images/event1.jpg' },
   { id: 2, name: 'Stock-taking of Donations', organization: 'The Volunteer Switchboard Pte Ltd', spots: 'No spot left', image: '/images/event2.jpg' },
   { id: 3, name: 'Volunteers for National Family Festival @ Punggol One', organization: 'Centre for Fathering Ltd', spots: '10 spots left', image: '/images/event3.jpg' },
   // Add more events here
@@ -15,7 +15,7 @@ const HomePage = () => {
   return (
       <Layout>
         <div className="text-center my-8">
-          <h1 className="text-4xl font-bold text-black">Be a volunteer</h1>
+          <h1 className="text-4xl font-bold text-black">Be a volunteer 🦌</h1>
           <p className="text-lg text-gray-600" font-semi-bold>Create positive impact by volunteering for causes you resonate with.</p>
           <div className="mt-4">
             <input 
