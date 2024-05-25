@@ -29,7 +29,7 @@ export default function RewardsPage() {
       <Head>
         <title>Company Rewards</title>
       </Head>
-      <div className="text-black py-8">
+      <div className="text-black py-8 text-center">
         <div className="container mx-auto">
           <h1 className="text-3xl font-bold">Partner Rewards</h1>
           <p>Its a fine day to reward yourself!</p>

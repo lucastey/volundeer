@@ -21,12 +21,12 @@ const Navbar = () => {
   const categories = ["Environmental", "Elderly", "Children"];
 
   return (
-    <header className="bg-blue-600 text-white p-4 fixed top-0 left-0 right-0 z-50">
+    <header className="bg-blue-600 text-white p-4 top-0 left-0 z-50">
       <nav className="container mx-auto flex justify-between items-center">
         <div className="flex-1 flex justify-center">
           <Link href="/" className="text-4xl font-bold p-2">Volundeer</Link>
         </div>
-        <div className="flex-1 flex justify-center">
+        <div className="flex-1 flex justify-center mr-5">
           <div className="flex items-center bg-white text-black px-2 py-1 rounded-full shadow-md text-sm">
             <div className="relative flex flex-col items-center px-2 py-1">
               <span className="text-sm font-semibold text-center">Region</span>
