@@ -36,9 +36,9 @@ const CreatePage = () => {
   ];
 
   // Function to register inputs with validation
-  const register = (name) => ({
+  const register = (name: string) => ({
     name,
-    required: "This field is required",
+    required: true,
   });
 
   const onHandleFileButtonClick = () => {};
