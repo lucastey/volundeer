@@ -1,23 +1,29 @@
 // data.ts
 export const proposals = [
-    {
-      id: 1,
-      title: "Proposal 1",
-      content: "Proposal 1 description",
-      votes: 42
-    },
-    {
-      id: 2,
-      title: "Proposal 2",
-      content: "Proposal 2 description",
-      votes: 37
-    }
-  ];
+  {
+    id: 1,
+    title: "Proposal for Urban Green Spaces",
+    content: "A proposal to increase urban green spaces in the city to improve air quality and provide recreational areas for residents.",
+    votes: 45,
+  },
+  {
+    id: 2,
+    title: "Community Education Initiative",
+    content: "An initiative to provide free educational workshops on various topics such as finance, health, and technology for community members.",
+    votes: 30,
+  },
+  {
+    id: 3,
+    title: "Local Farmers Market Support",
+    content: "A proposal to support local farmers markets by providing subsidies and marketing assistance to boost local agriculture.",
+    votes: 22,
+  },
+];
   
   export const comments = [
-    { id: 1, postId: 1, text: "Great post!", datetime: "2024-05-24T10:30:00Z" },
-    { id: 2, postId: 1, text: "Thanks for the info.", datetime: "2024-05-24T12:00:00Z" },
-    { id: 3, postId: 2, text: "Very helpful!", datetime: "2024-05-24T14:00:00Z" },
-    { id: 4, postId: 2, text: "Loved the examples.", datetime: "2024-05-24T15:30:00Z" }
+    { id: 1, proposalId: 1, body: "This is a great idea! More green spaces are definitely needed." },
+    { id: 2, proposalId: 1, body: "I support this proposal. It will improve our quality of life." },
+    { id: 3, proposalId: 2, body: "Educational workshops are a wonderful way to empower our community." },
+    { id: 4, proposalId: 3, body: "Supporting local farmers is crucial for our economy." },
+    { id: 5, proposalId: 3, body: "Great proposal! Local markets need more visibility." },
   ];
-  

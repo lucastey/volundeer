@@ -6,36 +6,7 @@ import Link from 'next/link';
 import Layout from "../components/layout";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faComment } from '@fortawesome/free-solid-svg-icons';
-
-// Sample Data
-const sampleProposals = [
-  {
-    id: 1,
-    title: "Proposal for Urban Green Spaces",
-    content: "A proposal to increase urban green spaces in the city to improve air quality and provide recreational areas for residents.",
-    votes: 45,
-  },
-  {
-    id: 2,
-    title: "Community Education Initiative",
-    content: "An initiative to provide free educational workshops on various topics such as finance, health, and technology for community members.",
-    votes: 30,
-  },
-  {
-    id: 3,
-    title: "Local Farmers Market Support",
-    content: "A proposal to support local farmers markets by providing subsidies and marketing assistance to boost local agriculture.",
-    votes: 22,
-  },
-];
-
-const sampleComments = [
-  { id: 1, proposalId: 1, body: "This is a great idea! More green spaces are definitely needed." },
-  { id: 2, proposalId: 1, body: "I support this proposal. It will improve our quality of life." },
-  { id: 3, proposalId: 2, body: "Educational workshops are a wonderful way to empower our community." },
-  { id: 4, proposalId: 3, body: "Supporting local farmers is crucial for our economy." },
-  { id: 5, proposalId: 3, body: "Great proposal! Local markets need more visibility." },
-];
+import { proposals, comments } from './data';
 
 // Proposal Component
 interface ProposalProps {
@@ -51,10 +22,10 @@ const Proposal: React.FC<{ proposal: ProposalProps }> = ({ proposal }) => {
   const handleUpvote = () => setVotes(votes + 1);
   const handleDownvote = () => setVotes(votes - 1);
 
-  const commentCount = sampleComments.filter(comment => comment.proposalId === proposal.id).length;
+  const commentCount = comments.filter(comment => comment.proposalId === proposal.id).length;
 
   return (
-    <Link href={`/proposal/${proposal.id}`} className="block border p-4 mb-4 no-underline hover:bg-gray-100 text-black">
+    <Link href={`/proposal/${proposal.id}`} className="block border rounded shadow p-4 mb-4 no-underline hover:bg-gray-100 text-black">
       <h2 className="text-2xl font-bold mb-2">{proposal.title}</h2>
       <p className="text-black">{proposal.content}</p>
       <div className="flex items-center mt-2">
@@ -70,10 +41,38 @@ const Proposal: React.FC<{ proposal: ProposalProps }> = ({ proposal }) => {
 
 // ForumPage Component
 const ForumPage = () => {
+  const [sortOption, setSortOption] = useState("votes");
+
+  const sortedProposals = [...proposals].sort((a, b) => {
+    if (sortOption === "votes") {
+      return b.votes - a.votes;
+    } else if (sortOption === "comments") {
+      const aCommentCount = comments.filter(comment => comment.proposalId === a.id).length;
+      const bCommentCount = comments.filter(comment => comment.proposalId === b.id).length;
+      return bCommentCount - aCommentCount;
+    }
+    return 0;
+  });
+
   return (
     <Layout>
-      <div className="mt-16 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {sampleProposals.map((proposal) => (
+      <div className="mt-16 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-black">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-4">Community Proposals</h1>
+          <div className="flex items-center">
+            <label htmlFor="sort" className="mr-2">Sort by:</label>
+            <select
+              id="sort"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            >
+              <option value="votes">Votes</option>
+              <option value="comments">Comments</option>
+            </select>
+          </div>
+        </div>
+        {sortedProposals.map((proposal) => (
           <Proposal key={proposal.id} proposal={proposal} />
         ))}
       </div>
