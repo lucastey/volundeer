@@ -4,7 +4,7 @@ import React from "react";
 import { usePathname } from 'next/navigation';
 import Layout from '../../components/layout';
 
-export const posts = [
+const posts = [
   {
     id: 1,
     title: 'First Post',

@@ -59,7 +59,7 @@ const Navbar = () => {
                       }}
                       className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-center"
                     >
-                      I'm flexible
+                      Im flexible
                     </li>
                   </ul>
                 )}
@@ -128,7 +128,8 @@ const Navbar = () => {
         </div>
         <div className="flex-1 flex justify-center space-x-4">
           <Link href="/create" className="text-lg font-semibold">Create</Link>
-          <Link href="/forum" className="text-lg font-semibold">Forum</Link>
+          <Link href="/proposal" className="text-lg font-semibold">Proposal</Link>
+          <Link href="/profile" className="text-lg font-semibold">Profile</Link>
         </div>
       </nav>
     </header>

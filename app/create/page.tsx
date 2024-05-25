@@ -1,80 +1,74 @@
 "use client";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Layout from "../components/layout";
 import DatePicker from "react-datepicker";
-import { useState, useRef, useEffect } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 
-const libraries = ["places"];
+const options = [
+  "Animals",
+  "Arts, culture and heritage",
+  "Community development",
+  "Education",
+  "Environment protection and sustainability",
+  "Healthcare",
+  "Other overseas causes",
+  "Overseas humanitarian aid",
+  "Social service and welfare",
+  "Sports",
+  "Adults",
+  "Animal welfare",
+  "Caregivers",
+  "Children",
+  "Disaster/Crisis victims",
+  "Elderly",
+  "Ethnic groups",
+  "Families",
+  "Foreign workers",
+  "Gender groups",
+  "General population",
+  "Incarcerated individuals",
+  "Local community",
+  "Low-income groups",
+  "Persons living with dementia",
+  "Persons living with medical illnesses",
+  "Persons living with disabilities",
+  "Persons living with mental health conditions",
+  "The environment",
+  "Youth",
+];
 
-const CreatePage = () => {
-  const options = [
-    "Animals",
-    "Arts, culture and heritage",
-    "Community development",
-    "Education",
-    "Environment protection and sustainability",
-    "Healthcare",
-    "Other overseas causes",
-    "Overseas humanitarian aid",
-    "Social service and welfare",
-    "Sports",
-    "Adults",
-    "Animal welfare",
-    "Caregivers",
-    "Children",
-    "Disaster/Crisis victims",
-    "Elderly",
-    "Ethnic groups",
-    "Families",
-    "Foreign workers",
-    "Gender groups",
-    "General population",
-    "Incarcerated individuals",
-    "Local community",
-    "Low-income groups",
-    "Persons living with dementia",
-    "Persons living with medical illnesses",
-    "Persons living with disabilities",
-    "Persons living with mental health conditions",
-    "The environment",
-    "Youth",
-  ];
+// Function to register inputs with validation
+const register = (name: string) => ({
+  name,
+  required: true,
+});
 
-  // Function to register inputs with validation
-  const register = (name) => ({
-    name,
-    required: "This field is required",
-  });
-
+const CreatePage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [address, setAddress] = useState("");
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
-    setSelectedOptions((prev) =>
+    setSelectedOptions((prev: string[]) =>
       checked ? [...prev, value] : prev.filter((option) => option !== value)
     );
   };
 
-  const removeSelectedOption = (option) => {
-    setSelectedOptions((prev) =>
+  const removeSelectedOption = (option: string) => {
+    setSelectedOptions((prev: string[]) =>
       prev.filter((selected) => selected !== option)
     );
   };
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBVPz93pdA7bfdVBCffTosYU8vfS2WpeF0", // Replace YOUR_API_KEY with your actual Google Maps API key
-    libraries,
+    googleMapsApiKey: "YOUR_API_KEY",
+    libraries: ["places"],
   });
 
-  const inputRef = useRef();
-  const [address, setAddress] = useState("");
-
   useEffect(() => {
-    if (isLoaded) {
+    if (isLoaded && inputRef.current) {
       const autocomplete = new window.google.maps.places.Autocomplete(
         inputRef.current,
         {
@@ -102,6 +96,10 @@ const CreatePage = () => {
     }
   }, [isLoaded]);
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   const onHandleFileButtonClick = () => {};
 
   return (
@@ -111,7 +109,6 @@ const CreatePage = () => {
           Create a Volunteer Campaign
         </h1>
         <form className="max-w-xl mx-auto shadow p-4 bg-white rounded-lg">
-          //tttt
           <div className="mb-4 relative">
             <label
               htmlFor="category-dropdown"
