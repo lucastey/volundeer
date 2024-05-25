@@ -1,3 +1,4 @@
+// app/components/navbar.tsx
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ const Navbar = () => {
   const categories = ["Environmental", "Elderly", "Children"];
 
   return (
-    <header className="bg-blue-600 text-white p-4">
+    <header className="bg-blue-600 text-white p-4 fixed top-0 left-0 right-0 z-50">
       <nav className="container mx-auto flex justify-between items-center">
         <div className="flex-1 flex justify-center">
           <Link href="/" className="text-4xl font-bold p-2">Volundeer</Link>
@@ -59,7 +60,7 @@ const Navbar = () => {
                       }}
                       className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-center"
                     >
-                      Im flexible
+                      I'm flexible
                     </li>
                   </ul>
                 )}
@@ -126,10 +127,14 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        <div className="flex-1 flex justify-center space-x-4">
+        <div className="flex-1 flex justify-center space-x-4 items-center">
           <Link href="/create" className="text-base font-semibold">Create</Link>
           <Link href="/proposal" className="text-base font-semibold">Proposal</Link>
-          <Link href="/profile" className="text-base font-semibold">Profile</Link>
+          <Link href="/profile" className="text-base font-semibold flex items-center">
+            <div className="bg-green-500 text-white rounded-full h-12 w-12 flex items-center justify-center text-lg font-bold">
+              L
+            </div>
+          </Link>
         </div>
       </nav>
     </header>

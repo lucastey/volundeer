@@ -1,0 +1,212 @@
+/* ProfilePage.module.css */
+
+.profileContainer {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .profileInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profileAvatar {
+    background-color: #38a169;
+    color: white;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.25rem;
+    font-weight: bold;
+  }
+  
+  .profileDetails {
+    margin-left: 1rem;
+  }
+  
+  .profileName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .profileLevel {
+    color: #718096;
+    font-size: 0.875rem;
+  }
+  
+  .profilePoints {
+    color: #ecc94b;
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+  
+  .rankSection {
+    text-align: right;
+  }
+  
+  .rankNumber {
+    color: #38a169;
+    font-size: 2.25rem;
+    font-weight: bold;
+  }
+  
+  .rankFraction {
+    color: #718096;
+    font-size: 0.875rem;
+  }
+  
+  .rankLabel {
+    color: #718096;
+  }
+  
+  .leaderboardButton {
+    background-color: #4299e1;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    margin-top: 0.5rem;
+  }
+  
+  .progressSection {
+    margin-bottom: 1.5rem;
+  }
+  
+  .progressInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .progressText {
+    color: #ecc94b;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .progressLabel {
+    color: #718096;
+  }
+  
+  .progressBarContainer {
+    width: 100%;
+    background-color: #edf2f7;
+    height: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .progressBar {
+    background-color: #4299e1;
+    height: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .badgesSection {
+    margin-bottom: 1.5rem;
+  }
+  
+  .badgesTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 0.5rem;
+  }
+  
+  .badgesContainer {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .badge {
+    background-color: #edf2f7;
+    padding: 0.5rem;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .badgeImage {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .historySection {
+    margin-bottom: 1.5rem;
+  }
+  
+  .historyTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 0.5rem;
+  }
+  
+  .historyHeader,
+  .historyItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7fafc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .historyHeader {
+    font-weight: bold;
+  }
+  
+  .historyContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    width: 100%;
+  }
+  
+  .historyDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .historyDate,
+  .historyEvent,
+  .historyPoints,
+  .historyButton {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    color: black; /* Ensure text color is black */
+  }
+  
+  .eventButton {
+    background-color: #4299e1;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    margin-left: 1rem;
+    flex-shrink: 0;
+  }
+  

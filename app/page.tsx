@@ -22,7 +22,7 @@ const events = [
   },
   {
     id: 3,
-    name: "Volunteers for National Family Festival @ Punggol One",
+    name: "National Family Festival",
     organization: "Centre for Fathering Ltd",
     spots: "10 spots left",
     image: "/images/event3.jpg",
@@ -91,7 +91,7 @@ const HomePage = () => {
                   </span>
                 </div>
                 <p className="text-gray-600">{event.organization}</p>
-                <p className="px-2 py-1 text-sm rounded-full bg-green-200 text-black border border-green-500 mt-2">{event.tag}</p>
+                <p className="inline-block px-2 py-1 text-sm rounded-full bg-green-200 text-black border border-green-500 mt-2">{event.tag}</p>
               </div>
             </div>
           </Link>

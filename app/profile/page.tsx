@@ -1,6 +1,8 @@
+// components/ProfilePage.tsx
 import React from "react";
 import Head from "next/head";
 import Layout from "../components/profileLayout";
+import styles from "./ProfilePage.module.css";
 
 const ProfilePage: React.FC = () => {
   return (
@@ -8,86 +10,90 @@ const ProfilePage: React.FC = () => {
       <Head>
         <title>Profile</title>
       </Head>
-      <div className="bg-white shadow-md rounded-lg p-6 m-6">
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center">
-            <div className="bg-green-500 text-white rounded-full h-20 w-20 flex items-center justify-center text-4xl font-bold">
-              L
-            </div>
-            <div className="ml-4">
-              <h1 className="text-2xl font-bold text-black">Lucas Tay</h1>
-              <p className="text-gray-600">
+      <div className={styles.profileContainer}>
+        <div className={styles.header}>
+          <div className={styles.profileInfo}>
+            <div className={styles.profileAvatar}>L</div>
+            <div className={styles.profileDetails}>
+              <h1 className={styles.profileName}>Lucas Tay</h1>
+              <p className={styles.profileLevel}>
                 LEVEL 4{" "}
                 <span className="ml-2 text-xs">Last Check-In: Today at 03:08PM</span>
               </p>
-              <p className="text-yellow-500 text-3xl font-bold mt-2">
-                85 Total Points
-              </p>
+              <p className={styles.profilePoints}>85 Total Points</p>
             </div>
           </div>
-          <div className="text-right">
-            <p className="text-green-500 text-4xl font-bold">20<span className="text-gray-500 text-sm">/365</span></p>
-            <p className="text-gray-500">Rank</p>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
-              VIEW LEADERBOARD
-            </button>
+          <div className={styles.rankSection}>
+            <p className={styles.rankNumber}>
+              20<span className={styles.rankFraction}>/365</span>
+            </p>
+            <p className={styles.rankLabel}>Rank</p>
+            <button className={styles.leaderboardButton}>VIEW LEADERBOARD</button>
           </div>
         </div>
-        <div className="mb-6">
-          <div className="flex items-center justify-between">
-            <p className="text-yellow-500 text-xl font-semibold">
-              45% Completed
-            </p>
-            <p className="text-gray-500">Rank Up!</p>
+        <div className={styles.progressSection}>
+          <div className={styles.progressInfo}>
+            <p className={styles.progressText}>45% Completed</p>
+            <p className={styles.progressLabel}>Rank Up!</p>
           </div>
-          <div className="w-full bg-gray-200 h-4 rounded-full mt-2">
+          <div className={styles.progressBarContainer}>
             <div
-              className="bg-blue-500 h-4 rounded-full"
+              className={styles.progressBar}
               style={{ width: "45%" }}
             ></div>
           </div>
         </div>
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-2 text-black">Badges</h2>
-          <div className="flex space-x-4">
-            <div className="bg-gray-200 p-2 rounded-full h-20 w-20 flex items-center justify-center overflow-hidden">
+        <div className={styles.badgesSection}>
+          <h2 className={styles.badgesTitle}>Badges</h2>
+          <div className={styles.badgesContainer}>
+            <div className={styles.badge}>
               <img
                 src="/images/badge1.png"
                 alt="Global Volunteer Badge"
-                className="object-cover h-full w-full"
+                className={styles.badgeImage}
               />
             </div>
-            <div className="bg-gray-200 p-2 rounded-full h-20 w-20 flex items-center justify-center overflow-hidden">
+            <div className={styles.badge}>
               <img
                 src="/images/badge2.png"
                 alt="Eco Warrior Badge"
-                className="object-cover h-full w-full"
+                className={styles.badgeImage}
               />
             </div>
           </div>
         </div>
-        <div>
-          <h2 className="text-lg font-semibold mb-2 text-black">Volunteering History</h2>
-          <div className="bg-gray-100 p-4 rounded-lg mb-2">
-            <div className="flex justify-between items-center text-black">
-              <p>Beach Clean-Up - Changi Beach July</p>
-              <p>12/04/2024</p>
-              <p>20 Points</p>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded">
-                Go to event 
-              </button>
+        <div className={styles.historySection}>
+          <h2 className={styles.historyTitle}>Volunteering History</h2>
+          <div className={styles.historyHeader}>
+            <div className={styles.historyEvent}>Event</div>
+            <div className={styles.historyDate}>Date</div>
+            <div className={styles.historyPoints}>Points</div>
+            <div className={styles.historyButton}></div>
+          </div>
+          <div className={styles.historyItem}>
+            <div className={styles.historyEvent}>Beach Clean-Up - Changi Beach July</div>
+            <div className={styles.historyDate}>12/04/2024</div>
+            <div className={styles.historyPoints}>20 Points</div>
+            <div className={styles.historyButton}>
+              <button className={styles.eventButton}>Go to event</button>
             </div>
           </div>
-          <div className="bg-gray-100 p-4 rounded-lg">
-            <div className="flex justify-between items-center text-black">
-              <p>Volunteer @ Club Heal Loyang</p>
-              <p>27/05/2024</p>
-              <p>65 Points</p>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded">
-                Go to event
-              </button>
+          <div className={styles.historyItem}>
+            <div className={styles.historyEvent}>Volunteer @ Club Heal Loyang</div>
+            <div className={styles.historyDate}>27/05/2024</div>
+            <div className={styles.historyPoints}>65 Points</div>
+            <div className={styles.historyButton}>
+              <button className={styles.eventButton}>Go to event</button>
             </div>
           </div>
+        </div>
+
+        {/* Add dummy content for scrolling */}
+        <div className={styles.dummyContent}>
+          <p>Additional Content to Enable Scrolling</p>
+          {[...Array(20)].map((_, index) => (
+            <p key={index}>This is dummy content line {index + 1}.</p>
+          ))}
         </div>
       </div>
     </Layout>
