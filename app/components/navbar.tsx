@@ -23,10 +23,10 @@ const Navbar = () => {
     <header className="bg-blue-600 text-white p-4">
       <nav className="container mx-auto flex justify-between items-center">
         <div className="flex-1 flex justify-center">
-          <Link href="/" className="text-4xl font-bold">Volundeer</Link>
+          <Link href="/" className="text-4xl font-bold p-2">Volundeer</Link>
         </div>
         <div className="flex-1 flex justify-center">
-          <div className="flex items-center bg-white text-black p-1 rounded-full shadow-md">
+          <div className="flex items-center bg-white text-black px-2 py-1 rounded-full shadow-md text-sm">
             <div className="relative flex flex-col items-center px-2 py-1">
               <span className="text-sm font-semibold text-center">Region</span>
               <div className="relative">
@@ -127,9 +127,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex-1 flex justify-center space-x-4">
-          <Link href="/create" className="text-lg font-semibold">Create</Link>
-          <Link href="/proposal" className="text-lg font-semibold">Proposal</Link>
-          <Link href="/profile" className="text-lg font-semibold">Profile</Link>
+          <Link href="/create" className="text-base font-semibold">Create</Link>
+          <Link href="/proposal" className="text-base font-semibold">Proposal</Link>
+          <Link href="/profile" className="text-base font-semibold">Profile</Link>
         </div>
       </nav>
     </header>
