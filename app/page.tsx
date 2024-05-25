@@ -91,7 +91,7 @@ const HomePage = () => {
                   </span>
                 </div>
                 <p className="text-gray-600">{event.organization}</p>
-                <p className="text-wrap px-2 py-1 text-sm rounded-full bg-green-200 text-black">{event.tag}</p>
+                <p className="px-2 py-1 text-sm rounded-full bg-green-200 text-black border border-green-500 mt-2">{event.tag}</p>
               </div>
             </div>
           </Link>
