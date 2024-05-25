@@ -1,16 +1,16 @@
 "use client";
 
+import { usePathname, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
-import styles from './DetailPage.module.css';
+import styles from '../DetailPage.module.css';
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
-import Layout from '../components/layout';
+import Layout from '../../components/layout';
 
-const DetailPage = () => {
-  // Example event details
-  const eventDetails = {
-    images: ['/images/event1.jpg', '/images/event2.jpg', '/images/event3.jpg'], // Updated paths
+const events = [
+  {
+    id: 1,
     name: 'Beach Cleanup Drive',
     date: 'June 10, 2024',
     time: '08:00 AM to 12:00 PM',
@@ -27,20 +27,31 @@ const DetailPage = () => {
     activityDetails: 'Beach Cleanup Drive aims to remove trash and debris from our beaches. Volunteers will work in teams to collect, sort, and dispose of waste. Training and materials will be provided on the day of the event.',
     contactPerson: 'John Doe',
     contactEmail: 'johndoe@example.com',
-    contactPhone: '+65 1234 5678'
-  };
+    contactPhone: '+65 1234 5678',
+    images: ['/images/event1.jpg', '/images/event2.jpg', '/images/event3.jpg']
+  },
+];
+
+const DetailPage = () => {
+  const pathname = usePathname();
+  const id = pathname.split('/').pop();
+  const event = events.find(e => e.id.toString() === id);
+
+  if (!event) {
+    return <p>Event not found</p>;
+  }
 
   return (
     <Layout>
       <div className={styles.container}>
         <div className={styles.leftColumn}>
-          <h1 className={styles.title}>{eventDetails.name}</h1>
+          <h1 className={styles.title}>{event.name}</h1>
           <div className={styles.organization}>
-            by <a href={eventDetails.organizerUrl}>{eventDetails.organizer}</a>
+            by <a href={event.organizerUrl}>{event.organizer}</a>
           </div>
           <div className={styles.carousel}>
             <Carousel showThumbs={false}>
-              {eventDetails.images.map((image, index) => (
+              {event.images.map((image, index) => (
                 <div key={index}>
                   <img src={image} alt={`Slide ${index + 1}`} />
                 </div>
@@ -50,60 +61,60 @@ const DetailPage = () => {
           <div className={styles.section}>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>About the Event:</span>
-              <span>{eventDetails.about}</span>
+              <span>{event.about}</span>
             </div>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>Activity Details:</span>
-              <span>{eventDetails.activityDetails}</span>
+              <span>{event.activityDetails}</span>
             </div>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>Requirements:</span>
-              <span>{eventDetails.requirements}</span>
+              <span>{event.requirements}</span>
             </div>
           </div>
           <div className={styles.separator}></div>
           <div className={styles.section}>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>Contact Person:</span>
-              <span>{eventDetails.contactPerson}</span>
+              <span>{event.contactPerson}</span>
             </div>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>Contact Phone:</span>
-              <span>{eventDetails.contactPhone}</span>
+              <span>{event.contactPhone}</span>
             </div>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>Contact Email:</span>
-              <span>{eventDetails.contactEmail}</span>
+              <span>{event.contactEmail}</span>
             </div>
           </div>
           <div className={styles.separator}></div>
           <div className={styles.section}>
             <div className={styles.field}>
               <span className={styles.fieldLabel}>About the Organization:</span>
-              <span>{eventDetails.organizationDetails}</span>
+              <span>{event.organizationDetails}</span>
             </div>
           </div>
         </div>
         <div className={styles.rightColumn}>
-          <h1 className={styles.titleRight}>{eventDetails.name}</h1>
+          <h1 className={styles.titleRight}>{event.name}</h1>
           <div className={styles.sectionRight}>
             <div className={styles.fieldRight}>
               <div className={styles.fieldLabelRight}>
                 <FaMapMarkerAlt className={styles.icon} />
                 <span>Location:</span>
               </div>
-              <div>{eventDetails.location}</div>
+              <div>{event.location}</div>
             </div>
             <div className={styles.fieldRight}>
               <div className={styles.fieldLabelRight}>
                 <FaCalendarAlt className={styles.icon} />
                 <span>Date and Time:</span>
               </div>
-              <div>{eventDetails.date}</div>
-              <div>{eventDetails.time}</div>
+              <div>{event.date}</div>
+              <div>{event.time}</div>
             </div>
             <div className={styles.counter}>
-              {eventDetails.spotsLeft} spots left
+              {event.spotsLeft} spots left
             </div>
           </div>
           <button className={styles.button} onClick={() => alert('Thank you for applying!')}>
