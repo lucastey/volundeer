@@ -15,6 +15,9 @@ Singapore's high digital connectivity and active society are assets. Create a so
 - Front-end: Next.js
 - Deployment: Vercel
 
+## Youtube Demo
+https://youtu.be/w46HflUlyAk
+
 ## Setup
 1. Clone this repository
     1. Install Git [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
