@@ -5,9 +5,9 @@ import Layout from '../components/layout';
 
 const events = [
   // Dummy data for events
-  { id: 1, name: 'Assistant Honorary Secretary (prefer social work background)', organization: 'SingYouth Hub', spots: '3 spots', image: '/images/event1.jpg' },
-  { id: 2, name: 'Stock-taking of Donations', organization: 'The Volunteer Switchboard Pte Ltd', spots: 'No spot left', image: '/images/event2.jpg' },
-  { id: 3, name: 'Volunteers for National Family Festival @ Punggol One', organization: 'Centre for Fathering Ltd', spots: '10 spots left', image: '/images/event3.jpg' },
+  { id: 1, name: 'Assistant Honorary Secretary (prefer social work background)', organization: 'SingYouth Hub', spots: '3 spots', image: '../images/event1.jpg' },
+  { id: 2, name: 'Stock-taking of Donations', organization: 'The Volunteer Switchboard Pte Ltd', spots: 'No spot left', image: '../images/event2.jpg' },
+  { id: 3, name: 'Volunteers for National Family Festival @ Punggol One', organization: 'Centre for Fathering Ltd', spots: '10 spots left', image: '../images/event3.jpg' },
   // Add more events here
 ];
 
@@ -34,7 +34,7 @@ const HomePage = () => {
 
         <div className="text-center mb-8">
           <h2 className="text-2xl font-semibold text-black">Explore <span className="text-teal-500 underline-offset-1">517 opportunities</span></h2>
-          <div className="flex justify-end mb-4">
+          <div className="flex justify-end mb-4 text-black">
             <label htmlFor="results-per-page" className="mr-2">Results per page</label>
             <select id="results-per-page" className="border-gray-300 rounded-md">
               <option>30</option>
