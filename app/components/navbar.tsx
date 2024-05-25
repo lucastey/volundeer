@@ -1,7 +1,7 @@
-// app/components/navbar.tsx
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [region, setRegion] = useState('');
@@ -60,7 +60,7 @@ const Navbar = () => {
                       }}
                       className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-center"
                     >
-                      I'm flexible
+                      I&apos;m flexible
                     </li>
                   </ul>
                 )}

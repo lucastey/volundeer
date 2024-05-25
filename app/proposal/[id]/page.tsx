@@ -1,104 +1,84 @@
 "use client";
 
+// components/ForumPage.tsx
 import React, { useState } from "react";
-import { usePathname } from 'next/navigation';
-import Layout from '../../components/layout';
+import Link from 'next/link';
+import Layout from "../../components/layout";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faComment } from '@fortawesome/free-solid-svg-icons';
 
-// Sample data
-const posts = [
+// Sample Data
+const sampleProposals = [
   {
     id: 1,
-    title: 'First Post',
-    body: 'This is the body of the first post.',
+    title: "Proposal for Urban Green Spaces",
+    content: "A proposal to increase urban green spaces in the city to improve air quality and provide recreational areas for residents.",
     votes: 45,
   },
   {
     id: 2,
-    title: 'Second Post',
-    body: 'This is the body of the second post.',
+    title: "Community Education Initiative",
+    content: "An initiative to provide free educational workshops on various topics such as finance, health, and technology for community members.",
     votes: 30,
+  },
+  {
+    id: 3,
+    title: "Local Farmers Market Support",
+    content: "A proposal to support local farmers markets by providing subsidies and marketing assistance to boost local agriculture.",
+    votes: 22,
   },
 ];
 
-const comments = [
-  { id: 1, postId: 1, body: 'This is a comment on the first post.' },
-  { id: 2, postId: 1, body: 'This is another comment on the first post.' },
-  { id: 3, postId: 2, body: 'This is a comment on the second post.' },
+const sampleComments = [
+  { id: 1, proposalId: 1, body: "This is a great idea! More green spaces are definitely needed." },
+  { id: 2, proposalId: 1, body: "I support this proposal. It will improve our quality of life." },
+  { id: 3, proposalId: 2, body: "Educational workshops are a wonderful way to empower our community." },
+  { id: 4, proposalId: 3, body: "Supporting local farmers is crucial for our economy." },
+  { id: 5, proposalId: 3, body: "Great proposal! Local markets need more visibility." },
 ];
 
-const ForumPost = () => {
-  const pathname = usePathname();
-  const id = pathname.split('/').pop();
-  const post = posts.find(e => e.id.toString() === id);
-  const [postComments, setPostComments] = useState(comments.filter(comment => comment.postId.toString() === id));
-  const [newComment, setNewComment] = useState("");
-  const [votes, setVotes] = useState(post ? post.votes : 0);
+// Proposal Component
+interface ProposalProps {
+  id: number;
+  title: string;
+  content: string;
+  votes: number; // Ensure the votes property is included
+}
 
-  // Handle cases where the post is not found
-  if (!post) {
-    return <div>Post not found</div>;
-  }
+const Proposal: React.FC<{ proposal: ProposalProps }> = ({ proposal }) => {
+  const [votes, setVotes] = useState(proposal.votes);
 
   const handleUpvote = () => setVotes(votes + 1);
   const handleDownvote = () => setVotes(votes - 1);
-  const handleAddComment = () => {
-    if (newComment.trim()) {
-      const newCommentObj = {
-        id: comments.length + 1,
-        postId: post.id,
-        body: newComment.trim(),
-      };
-      setPostComments([...postComments, newCommentObj]);
-      setNewComment("");
-    }
-  };
+
+  const commentCount = sampleComments.filter(comment => comment.proposalId === proposal.id).length;
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl mt-16 text-black">
-        <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-        <p className="mb-8">{post.body}</p>
-        
-        <div className="flex items-center mb-8">
-          <FontAwesomeIcon icon={faThumbsUp} className="cursor-pointer mr-2 text-green-500" onClick={handleUpvote} />
-          <span className="mr-2">{votes}</span>
-          <FontAwesomeIcon icon={faThumbsDown} className="cursor-pointer text-red-500" onClick={handleDownvote} />
-          <FontAwesomeIcon icon={faComment} className="ml-4 text-blue-500" />
-          <span className="ml-1">{postComments.length}</span>
-        </div>
-
-        <h2 className="text-2xl font-semibold mb-4">Comments</h2>
-        <div className="space-y-4 mb-8">
-          {postComments.length > 0 ? (
-            postComments.map(comment => (
-              <div key={comment.id} className="p-4 border rounded shadow">
-                <p>{comment.body}</p>
-              </div>
-            ))
-          ) : (
-            <p>No comments yet.</p>
-          )}
-        </div>
-
-        <div>
-          <textarea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            className="w-full p-2 border rounded mb-4"
-            placeholder="Add a comment..."
-          />
-          <button
-            onClick={handleAddComment}
-            className="px-4 py-2 bg-blue-500 text-white rounded"
-          >
-            Submit
-          </button>
-        </div>
+    <Link href={`/proposal/${proposal.id}`} className="block border p-4 mb-4 no-underline hover:bg-gray-100 text-black">
+      <h2 className="text-2xl font-bold mb-2">{proposal.title}</h2>
+      <p className="text-black">{proposal.content}</p>
+      <div className="flex items-center mt-2">
+        <FontAwesomeIcon icon={faThumbsUp} className="cursor-pointer mr-2 text-green-500" onClick={(e) => { e.preventDefault(); handleUpvote(); }} />
+        <span className="mr-2">{votes}</span>
+        <FontAwesomeIcon icon={faThumbsDown} className="cursor-pointer text-red-500" onClick={(e) => { e.preventDefault(); handleDownvote(); }} />
+        <FontAwesomeIcon icon={faComment} className="ml-4 text-blue-500" />
+        <span className="ml-1">{commentCount}</span>
       </div>
-    </Layout>
+    </Link>
   );
 };
 
-export default ForumPost;
+// ForumPage Component
+const ForumPage = () => {
+  return (
+    <Layout>
+      <div className="mt-16 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        {sampleProposals.map((proposal) => (
+          <Proposal key={proposal.id} proposal={proposal} />
+        ))}
+      </div>
+    </Layout>
+  );
+}
+
+export default ForumPage;
