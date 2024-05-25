@@ -83,7 +83,7 @@ const HomePage = () => {
               />
               <div className="p-4">
                 <div className="flex justify-between items-baseline">
-                  <h3 className="text-lg font-semibold">{event.name}</h3>
+                  <h3 className="text-lg font-semibold text-black">{event.name}</h3>
                   <span
                     className={`px-2 py-1 text-sm rounded-full ${event.spots === "No spot left" ? "bg-red-200 text-red-800" : "bg-green-200 text-green-800"}`}
                   >
@@ -91,6 +91,7 @@ const HomePage = () => {
                   </span>
                 </div>
                 <p className="text-gray-600">{event.organization}</p>
+                <p className="text-wrap px-2 py-1 text-sm rounded-full bg-green-200 text-black">{event.tag}</p>
               </div>
             </div>
           </Link>
