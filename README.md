@@ -12,7 +12,7 @@ Singapore's high digital connectivity and active society are assets. Create a so
 ```
 
 ## Tech Stack
-- Front-end: Next.js
+- Front-end: Next.js, TailwindCSS
 - Deployment: Vercel
 
 ## Youtube Demo

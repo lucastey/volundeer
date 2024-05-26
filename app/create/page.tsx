@@ -62,8 +62,9 @@ const CreatePage: React.FC = () => {
     );
   };
 
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'default_key';
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "YOUR_API_KEY",
+    googleMapsApiKey: apiKey,
     libraries: ["places"],
   });
 
